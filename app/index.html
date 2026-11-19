@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Neon Cover Studio — GTA 6-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">VICE NEON <span>COVER STUDIO</span></div>
+  <div class="topbar-tag">Multi-panel GTA-style covers &middot; 100% offline &middot; your photos never leave this machine</div>
+</header>
+<main class="studio">
+  <section class="controls" aria-label="Cover controls">
+    <h1>Build your cover</h1>
+
+    <fieldset>
+      <legend>1 &middot; Photos</legend>
+      <label class="file-btn">Add photos&hellip;
+        <input id="photoFiles" type="file" accept="image/*" multiple>
+      </label>
+      <div class="row">
+        <button id="demoPhotos" type="button">Load demo photos</button>
+        <button id="clearPhotos" type="button" class="ghost">Clear</button>
+      </div>
+      <label class="check"><input id="fillOne" type="radio" name="fillMode" value="one" checked> One photo fills all panels</label>
+      <label class="check"><input id="fillEach" type="radio" name="fillMode" value="each"> Different photo per panel</label>
+      <label>Panel
+        <select id="panelSelect">
+          <option value="0">Panel 1 — Hero</option>
+          <option value="1">Panel 2</option>
+          <option value="2">Panel 3</option>
+          <option value="3">Panel 4</option>
+        </select>
+      </label>
+      <label>Photo for this panel
+        <select id="panelPhoto"></select>
+      </label>
+      <label>Zoom <span id="zoomVal">100%</span>
+        <input id="zoom" type="range" min="100" max="300" value="100">
+      </label>
+      <p class="hint">Drag on the preview to pan the selected panel.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 &middot; Caption</legend>
+      <label>Main title
+        <input id="title" type="text" maxlength="30" value="VICE CITY NIGHTS">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="40" value="Neon Nights &amp; Fast Getaways">
+      </label>
+      <label>Badge / tagline
+        <input id="badge" type="text" maxlength="24" value="GTA 6 FAN COVER">
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 &middot; Layout &amp; size</legend>
+      <div class="layout-pick" role="group" aria-label="Layout">
+        <button type="button" data-layout="hero" class="layout-btn active">Hero Grid</button>
+        <button type="button" data-layout="diagonal" class="layout-btn">Diagonal Slice</button>
+        <button type="button" data-layout="trio" class="layout-btn">Trio Strip</button>
+      </div>
+      <label>Export size
+        <select id="exportSize">
+          <option value="square">Square 1080 &times; 1080</option>
+          <option value="portrait">Portrait 1080 &times; 1350</option>
+          <option value="landscape" selected>Landscape 1920 &times; 1080</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 &middot; Sunset grade</legend>
+      <label>Sunset intensity <span id="sunsetVal">80%</span>
+        <input id="sunset" type="range" min="0" max="100" value="80">
+      </label>
+      <label>Neon glow <span id="neonVal">80%</span>
+        <input id="neon" type="range" min="0" max="100" value="80">
+      </label>
+      <label>Contrast <span id="contrastVal">108%</span>
+        <input id="contrast" type="range" min="80" max="140" value="108">
+      </label>
+      <label>Saturation <span id="saturationVal">115%</span>
+        <input id="saturation" type="range" min="50" max="180" value="115">
+      </label>
+      <label class="check"><input id="duotone" type="checkbox"> Duotone sunset</label>
+    </fieldset>
+
+    <button id="export" type="button" class="export-btn">EXPORT PNG</button>
+    <p id="status" role="status"></p>
+  </section>
+
+  <section class="preview" aria-label="Live preview">
+    <div class="preview-head"><span>LIVE PREVIEW</span><span id="previewSize">1920 &times; 1080</span></div>
+    <canvas id="cover" width="1920" height="1080" aria-label="The cover"></canvas>
+    <p class="preview-hint">Drag the cover to pan the selected panel &middot; every change renders instantly</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
